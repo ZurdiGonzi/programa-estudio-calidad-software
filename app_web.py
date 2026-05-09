@@ -1,3 +1,21 @@
+import sys
+import subprocess
+
+def instalar_si_falta(libreria, nombre_paquete=None):
+    if nombre_paquete is None:
+        nombre_paquete = libreria
+    try:
+        __import__(libreria)
+    except ImportError:
+        print(f"⏳ Instalando '{nombre_paquete}'...")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", nombre_paquete])
+        print(f"✅ '{nombre_paquete}' instalada.\n")
+
+# --- INSTALACIÓN AUTOMÁTICA ---
+instalar_si_falta('streamlit')
+instalar_si_falta('pandas')
+instalar_si_falta('openpyxl')
+
 import streamlit as st
 import pandas as pd
 import random
