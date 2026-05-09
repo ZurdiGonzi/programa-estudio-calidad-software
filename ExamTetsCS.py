@@ -9,7 +9,12 @@ def instalar_si_falta(libreria, nombre_paquete=None):
         __import__(libreria)
     except ImportError:
         print(f"⏳ Instalando '{nombre_paquete}'...")
-        subprocess.check_call([sys.executable, "-m", "pip", "install", nombre_paquete])
+        try:
+            # Intentar con uv, ya que estás usando este             uv run ExamTetsCS.pyentorno
+            subprocess.check_call(["uv", "pip", "install", nombre_paquete])
+        except FileNotFoundError:
+            # Si no hay uv, recurrir a pip clásico
+            subprocess.check_call([sys.executable, "-m", "pip", "install", nombre_paquete])
         print(f"✅ '{nombre_paquete}' instalada.\n")
 
 
