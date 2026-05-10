@@ -19,11 +19,23 @@ instalar_si_falta('openpyxl')
 import streamlit as st
 import pandas as pd
 import random
+from pathlib import Path
 
 # Configuración de la página
 st.set_page_config(page_title="Simulador de Exámenes", page_icon="📚", layout="centered")
 
 st.title("📚 Simulador de Exámenes 📚")
+
+REQUIRED_COLS = ["Tema", "Pregunta", "A", "B", "C", "D", "Correcta"]
+
+
+def _listar_excels_locales() -> list[str]:
+    excels = sorted([p.name for p in Path(".").glob("*.xlsx")])
+    # Preferimos el banco estándar si existe.
+    if "preguntas.xlsx" in excels:
+        excels.remove("preguntas.xlsx")
+        excels.insert(0, "preguntas.xlsx")
+    return excels
 
 # Cacheamos la carga de datos para que no se recargue en cada interacción
 @st.cache_data
@@ -33,13 +45,6 @@ def cargar_excel(ruta_archivo):
         return df
     except FileNotFoundError:
         return None
-
-archivo_excel = 'preguntas.xlsx'
-df = cargar_excel(archivo_excel)
-
-if df is None:
-    st.error(f"Error: No se encontró el archivo '{archivo_excel}'. Asegúrate de que exista en la misma carpeta o sube el tuyo.")
-    st.stop()
 
 # --- Gestión del estado de la aplicación (Manejo de navegación y memoria) ---
 if 'estado' not in st.session_state:
@@ -56,6 +61,38 @@ if 'modo' not in st.session_state:
     st.session_state.modo = None
 if 'feedback' not in st.session_state:
     st.session_state.feedback = None
+
+
+# --- Selección de Excel (al inicio) ---
+st.sidebar.markdown("### Archivo de preguntas")
+excels_disponibles = _listar_excels_locales()
+if not excels_disponibles:
+    st.sidebar.error("No se han encontrado archivos .xlsx en esta carpeta.")
+    st.stop()
+
+archivo_excel = st.sidebar.selectbox(
+    "Selecciona el Excel a usar",
+    options=excels_disponibles,
+    index=0,
+    key="excel_seleccionado",
+    disabled=(st.session_state.estado != "MENU"),
+)
+st.sidebar.caption("(Puedes añadir más .xlsx a la carpeta y aparecerán aquí)" )
+
+df = cargar_excel(archivo_excel)
+if df is None:
+    st.error(
+        f"Error: No se encontró el archivo '{archivo_excel}'. Asegúrate de que exista en la misma carpeta."
+    )
+    st.stop()
+
+missing_cols = [c for c in REQUIRED_COLS if c not in df.columns]
+if missing_cols:
+    st.error(
+        "El Excel seleccionado no tiene el formato esperado. "
+        f"Faltan columnas: {missing_cols}."
+    )
+    st.stop()
 
 # Funciones de utilidad para el control del test
 def iniciar_test(df_seleccionado, modo_nombre):

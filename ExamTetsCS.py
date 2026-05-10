@@ -1,5 +1,6 @@
 import sys
 import subprocess
+from pathlib import Path
 
 
 def instalar_si_falta(libreria, nombre_paquete=None):
@@ -70,7 +71,27 @@ def motor_preguntas(df_preguntas):
 
 
 def menu_principal():
+    excels = sorted([p.name for p in Path('.').glob('*.xlsx')])
+    if 'preguntas.xlsx' in excels:
+        excels.remove('preguntas.xlsx')
+        excels.insert(0, 'preguntas.xlsx')
+
     archivo_excel = 'preguntas.xlsx'
+    if excels:
+        print("\nArchivos Excel disponibles:")
+        for i, f in enumerate(excels, 1):
+            print(f" {i}. {f}")
+        eleccion = input(
+            "\nElige un número (o ENTER para usar 'preguntas.xlsx'): "
+        ).strip()
+        if eleccion:
+            if eleccion.isdigit() and 1 <= int(eleccion) <= len(excels):
+                archivo_excel = excels[int(eleccion) - 1]
+            elif eleccion in excels:
+                archivo_excel = eleccion
+            else:
+                print("⚠️ Elección no válida. Usando 'preguntas.xlsx'.")
+
     df = cargar_excel(archivo_excel)
 
     if df is None:
