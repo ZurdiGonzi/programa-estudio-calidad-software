@@ -109,14 +109,14 @@ def volver_al_menu():
     st.session_state.estado = 'MENU'
     st.session_state.feedback = None
 
-def responder(respuesta_elegida, correcta):
+def responder(respuesta_elegida, correcta, texto_correcta=""):
     # Evaluamos la respuesta
     if respuesta_elegida == correcta:
         st.session_state.aciertos += 1
         st.session_state.feedback = {"tipo": "success", "texto": "✅ ¡CORRECTO!"}
     else:
         st.session_state.fallos += 1
-        st.session_state.feedback = {"tipo": "error", "texto": f"❌ INCORRECTO. La respuesta correcta era la: {correcta}"}
+        st.session_state.feedback = {"tipo": "error", "texto": f"❌ INCORRECTO. La respuesta correcta era la **{correcta}**: {texto_correcta}"}
 
 def avanzar_pregunta():
     st.session_state.feedback = None
@@ -190,7 +190,7 @@ elif st.session_state.estado == 'JUGANDO':
         for opt in opciones:
             texto_opcion = f"**{opt})** {pregunta_actual[opt]}"
             if st.button(texto_opcion, key=f"btn_{opt}_{idx}", use_container_width=True):
-                responder(opt, correcta)
+                responder(opt, correcta, pregunta_actual.get(correcta, ""))
                 st.rerun()
     # Si ya respondimos, mostramos feedback y botón de continuar
     else:
