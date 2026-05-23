@@ -1,12 +1,7 @@
 {
   "IPO": {
-    "num_preguntas": 25,
-    "puntos_acierto": 4.0,
-    "puntos_fallo": 1.0
-  },
-  "a": {
-    "num_preguntas": 50,
-    "puntos_acierto": 2.0,
-    "puntos_fallo": 0.66
+    "num_preguntas": 20,
+    "puntos_acierto": 5.0,
+    "puntos_fallo": 1.25
   }
 }
