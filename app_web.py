@@ -20,6 +20,8 @@ import streamlit as st
 import pandas as pd
 import random
 from pathlib import Path
+import json
+import time
 
 # Configuración de la página
 st.set_page_config(page_title="Simulador de Exámenes", page_icon="📚", layout="centered")
@@ -27,6 +29,67 @@ st.set_page_config(page_title="Simulador de Exámenes", page_icon="📚", layout
 st.title("📚 Simulador de Exámenes 📚")
 
 REQUIRED_COLS = ["Tema", "Pregunta", "A", "B", "C", "D", "Correcta"]
+
+# Archivo donde guardamos las configuraciones de examen
+CONFIG_FILE = Path("sim_config.json")
+
+
+def _leer_configuraciones() -> dict:
+    if not CONFIG_FILE.exists():
+        return {}
+    try:
+        with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def _guardar_configuracion(nombre: str, cfg: dict):
+    configs = _leer_configuraciones()
+    configs[nombre] = cfg
+    with open(CONFIG_FILE, "w", encoding="utf-8") as f:
+        json.dump(configs, f, ensure_ascii=False, indent=2)
+
+
+def _eliminar_configuracion(nombre: str):
+    configs = _leer_configuraciones()
+    if nombre in configs:
+        del configs[nombre]
+        with open(CONFIG_FILE, "w", encoding="utf-8") as f:
+            json.dump(configs, f, ensure_ascii=False, indent=2)
+
+
+# Valores por defecto
+DEFAULT_SETTINGS = {
+    "num_preguntas": 50,
+    "puntos_acierto": 2.0,
+    "puntos_fallo": 0.66
+}
+
+# Cargamos la configuración activa (puede venir de un archivo JSON)
+saved_configs = _leer_configuraciones()
+active_cfg = saved_configs.get("default", DEFAULT_SETTINGS)
+
+
+def _safe_rerun():
+    """Reintento seguro para forzar rerun en distintas versiones de Streamlit."""
+    try:
+        # Preferimos la API oficial si existe
+        if hasattr(st, "experimental_rerun"):
+            st.experimental_rerun()
+            return
+        # Algunas versiones aceptan `rerun` directamente
+        if hasattr(st, "rerun"):
+            st.rerun()
+            return
+    except Exception:
+        pass
+    # Fallback: cambiar parámetros de consulta para forzar rerun
+    try:
+        st.experimental_set_query_params(_refresh=int(time.time()))
+    except Exception:
+        # Si todo falla, simplemente detener la ejecución (usuario puede refrescar)
+        st.stop()
 
 
 def _listar_excels_locales() -> list[str]:
@@ -61,6 +124,8 @@ if 'modo' not in st.session_state:
     st.session_state.modo = None
 if 'feedback' not in st.session_state:
     st.session_state.feedback = None
+if 'settings' not in st.session_state:
+    st.session_state.settings = active_cfg.copy()
 
 
 # --- Selección de Excel (al inicio) ---
@@ -78,6 +143,49 @@ archivo_excel = st.sidebar.selectbox(
     disabled=(st.session_state.estado != "MENU"),
 )
 st.sidebar.caption("(Puedes añadir más .xlsx a la carpeta y aparecerán aquí)" )
+
+# --- UI de ajustes guardables ---
+st.sidebar.markdown("---")
+st.sidebar.markdown("### Ajustes del Examen")
+
+# Selector de configuraciones guardadas (siempre visible)
+configs = _leer_configuraciones()
+config_names = sorted(list(configs.keys()))
+selected_config = None
+sel = st.sidebar.selectbox("Cargar configuración guardada", options=["(ninguna)"] + config_names, index=0)
+# Si el usuario selecciona una configuración, la aplicamos inmediatamente
+if sel and sel != "(ninguna)":
+    selected_config = configs.get(sel)
+    if selected_config:
+        # Actualizamos la configuración activa y los campos del formulario
+        st.session_state.settings = selected_config.copy()
+        st.session_state['cfg_num_preguntas'] = int(selected_config.get('num_preguntas', DEFAULT_SETTINGS['num_preguntas']))
+        st.session_state['cfg_puntos_acierto'] = float(selected_config.get('puntos_acierto', DEFAULT_SETTINGS['puntos_acierto']))
+        st.session_state['cfg_puntos_fallo'] = float(selected_config.get('puntos_fallo', DEFAULT_SETTINGS['puntos_fallo']))
+
+# Campos de ajuste
+num_preguntas = st.sidebar.number_input("Número de preguntas (Examen)", min_value=1, value=int(st.session_state.settings.get("num_preguntas", DEFAULT_SETTINGS["num_preguntas"])), step=1, key="cfg_num_preguntas")
+puntos_acierto = st.sidebar.number_input("Puntos por acierto", value=float(st.session_state.settings.get("puntos_acierto", DEFAULT_SETTINGS["puntos_acierto"])), step=0.1, format="%.2f", key="cfg_puntos_acierto")
+puntos_fallo = st.sidebar.number_input("Puntos por fallo (penalización)", value=float(st.session_state.settings.get("puntos_fallo", DEFAULT_SETTINGS["puntos_fallo"])), step=0.01, format="%.2f", key="cfg_puntos_fallo")
+
+st.session_state.settings["num_preguntas"] = int(num_preguntas)
+st.session_state.settings["puntos_acierto"] = float(puntos_acierto)
+st.session_state.settings["puntos_fallo"] = float(puntos_fallo)
+
+st.sidebar.markdown("#### Guardar configuración")
+nuevo_nombre = st.sidebar.text_input("Nombre configuración", value="", key="cfg_name")
+col_save, col_del = st.sidebar.columns(2)
+with col_save:
+    if st.button("Guardar", key="guardar_cfg"):
+        nombre = nuevo_nombre.strip() or f"cfg_{len(_leer_configuraciones())+1}"
+        _guardar_configuracion(nombre, st.session_state.settings)
+        st.sidebar.success(f"Configuración '{nombre}' guardada.")
+        _safe_rerun()
+with col_del:
+    if st.button("Eliminar seleccionada", key="borrar_cfg") and sel and sel != "(ninguna)":
+        _eliminar_configuracion(sel)
+        st.sidebar.success(f"Configuración '{sel}' eliminada.")
+        _safe_rerun()
 
 df = cargar_excel(archivo_excel)
 if df is None:
@@ -145,9 +253,10 @@ if st.session_state.estado == 'MENU':
             
     with col2:
         st.subheader("Examen Normal")
-        st.write("50 preguntas aleatorias. Acierto: +2, Fallo: -0.66")
+        cfg = st.session_state.settings
+        st.write(f"{int(cfg.get('num_preguntas', 50))} preguntas aleatorias. Acierto: +{cfg.get('puntos_acierto', 2.0):.2f}, Fallo: -{cfg.get('puntos_fallo', 0.66):.2f}")
         if st.button("Iniciar Examen", use_container_width=True):
-            cantidad = min(50, len(df))
+            cantidad = min(int(cfg.get('num_preguntas', 50)), len(df))
             iniciar_test(df.sample(n=cantidad), "Examen Normal")
             st.rerun()
             
@@ -229,16 +338,19 @@ elif st.session_state.estado == 'RESULTADOS':
     col3.metric("Sin responder ⚪", total_preguntas - respondidas)
     
     if st.session_state.modo == "Examen Normal":
-        puntuacion = (aciertos * 2) - (fallos * 0.66)
+        cfg = st.session_state.settings
+        p_acierto = float(cfg.get('puntos_acierto', DEFAULT_SETTINGS['puntos_acierto']))
+        p_fallo = float(cfg.get('puntos_fallo', DEFAULT_SETTINGS['puntos_fallo']))
+        puntuacion = (aciertos * p_acierto) - (fallos * p_fallo)
         
         st.divider()
         
         # Opción para calcular solo sobre lo respondido si salió antes de tiempo
-        puntuacion_maxima = total_preguntas * 2
+        puntuacion_maxima = total_preguntas * p_acierto
         if respondidas > 0 and respondidas < total_preguntas:
             calcular_proporcional = st.toggle("Ver nota en proporción a las respondidas", value=False)
             if calcular_proporcional:
-                puntuacion_maxima = respondidas * 2
+                puntuacion_maxima = respondidas * p_acierto
                 st.caption(f"*(Calculando nota sobre las {respondidas} preguntas contestadas)*")
             else:
                 st.caption(f"*(Calculando nota sobre el total de {total_preguntas} preguntas)*")
