@@ -1,0 +1,228 @@
+{
+  "id": "quiz-ipoi-2023-revision",
+  "title": "Prueba Final Interacción Persona-Ordenador - Mayo 2023 (Revisión)",
+  "description": "Cuestionario con preguntas clave sobre usabilidad, accesibilidad, prototipado, evaluación y estándares ISO, basado en revisión de intento.",
+  "tags": ["interacción", "usabilidad", "accesibilidad", "diseño", "ISO", "IPo"],
+  "questions": [
+    {
+      "id": "q1",
+      "type": "multiple",
+      "text": "En el contexto de la asignatura, el sistema perceptual:",
+      "options": [
+        { "id": "o1", "text": "Maneja las acciones, pero no los estímulos sensoriales", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "No maneja las acciones ni los estímulos sensoriales", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Maneja los estímulos sensoriales, pero no las acciones", "isCorrect": true, "value": 1 },
+        { "id": "o4", "text": "Maneja los estímulos sensoriales y también las acciones", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "multiple",
+      "text": "¿Qué opción es la que mejor define la facilidad de aprendizaje en usabilidad?",
+      "options": [
+        { "id": "o1", "text": "Facilidad para imponer restricciones sobre el diálogo del sistema", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Nivel con el que se da soporte al usuario para conseguir los objetivos en la aplicación", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Multiplicidad de formas en las que el usuario y el sistema intercambian información", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Facilidad con la que los nuevos usuarios pueden aprender a interactuar de forma efectiva y a lograr el máximo rendimiento", "isCorrect": true, "value": 1 }
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "multiple",
+      "text": "Según la WAI, ¿cuál de estas opciones no es un principio de accesibilidad?",
+      "options": [
+        { "id": "o1", "text": "Perceptible", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Adaptable", "isCorrect": true, "value": 1 },
+        { "id": "o3", "text": "Operable", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Comprensible", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "multiple",
+      "text": "En relación con la participación de los usuarios en la evaluación de la IU, ¿qué afirmación es correcta?",
+      "options": [
+        { "id": "o1", "text": "Los usuarios participan en la Interacción constructiva y en la evaluación heurística", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Los usuarios participan en la Interacción constructiva, pero no en la evaluación heurística", "isCorrect": true, "value": 1 },
+        { "id": "o3", "text": "Los usuarios no participan en la Interacción constructiva ni en la evaluación heurística", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Los usuarios no participan en la Interacción constructiva, pero sí en la evaluación heurística", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q5",
+      "type": "multiple",
+      "text": "En el contexto de accesibilidad de la interacción, se considera discapacidad auditiva:",
+      "options": [
+        { "id": "o1", "text": "Solo para pérdidas de agudeza auditiva de más del 50%", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Cualquier pérdida de agudeza auditiva", "isCorrect": true, "value": 1 },
+        { "id": "o3", "text": "Solo para pérdidas de agudeza auditiva total (sordera)", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Solo para pérdidas de agudeza auditiva de más del 75%", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q6",
+      "type": "multiple",
+      "text": "¿Cuál de las siguientes opciones no es una técnica de recogida de datos?",
+      "options": [
+        { "id": "o1", "text": "Observación", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Heurística", "isCorrect": true, "value": 1 },
+        { "id": "o3", "text": "Entrevista", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Encuesta", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q7",
+      "type": "multiple",
+      "text": "¿Qué opción no es un principio de flexibilidad?",
+      "options": [
+        { "id": "o1", "text": "Sustitución", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Personalización", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Multihilo", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Capacidad de recuperación", "isCorrect": true, "value": 1 }
+      ]
+    },
+    {
+      "id": "q8",
+      "type": "multiple",
+      "text": "¿Cuál de las opciones hace referencia a un prototipado horizontal?",
+      "options": [
+        { "id": "o1", "text": "Representan aspectos más precisos del sistema", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Tienen implementadas pocas características, pero sus funcionalidades están totalmente implementadas", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Implementan aspectos generales del sistema sin entrar en detalles", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Incluye todas las características del sistema, pero no contiene funcionalidad subyacente", "isCorrect": true, "value": 1 }
+      ]
+    },
+    {
+      "id": "q9",
+      "type": "multiple",
+      "text": "En el contexto de prototipado, ¿qué es un escenario?",
+      "options": [
+        { "id": "o1", "text": "Un objeto construido para poder evaluar una parte física del sistema", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Una forma de reflejar las historias sobre las personas y sus actividades", "isCorrect": true, "value": 1 },
+        { "id": "o3", "text": "Una historia completa de la interacción existente", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Un conjunto de viñetas que muestran la evolución de la situación del usuario mientras está interactuando con el sistema", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q10",
+      "type": "multiple",
+      "text": "Según AIPO, ¿en qué fase del DCU se realiza un perfil del entorno?",
+      "options": [
+        { "id": "o1", "text": "Evaluación", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Prototipado", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Análisis de requisitos", "isCorrect": true, "value": 1 },
+        { "id": "o4", "text": "Diseño", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q11",
+      "type": "multiple",
+      "text": "En relación con la interacción constructivista, ¿qué afirmación es la más adecuada?",
+      "options": [
+        { "id": "o1", "text": "Se realiza en el lugar de trabajo", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Permite una mejor comprensión del modelo mental del usuario", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Se centra en el usuario experto", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Participan dos usuarios simultáneamente", "isCorrect": true, "value": 1 }
+      ]
+    },
+    {
+      "id": "q12",
+      "type": "multiple",
+      "text": "La opción que mejor describe el concepto affordance es:",
+      "options": [
+        { "id": "o1", "text": "La relación entre los controles y sus efectos en el sistema", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Cómo el usuario percibe por primera vez el sistema", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "La representación del mundo real a la que el usuario está acostumbrado", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Lo que un elemento de interacción sugiere hacer al usuario", "isCorrect": true, "value": 1 }
+      ]
+    },
+    {
+      "id": "q13",
+      "type": "multiple",
+      "text": "Según los estándares, ¿qué parámetros usa la ISO 9241 para definir la usabilidad?",
+      "options": [
+        { "id": "o1", "text": "Eficacia, eficiencia y simplicidad", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Efectividad, eficiencia y satisfacción", "isCorrect": true, "value": 1 },
+        { "id": "o3", "text": "Simplicidad, consistencia y satisfacción", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Eficacia, eficiencia y consistencia", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q14",
+      "type": "multiple",
+      "text": "En cuanto a la importancia de aplicar principios de diseño basados en la usabilidad, ¿qué consecuencia no es correcta?",
+      "options": [
+        { "id": "o1", "text": "Aumento de los costes de producción", "isCorrect": true, "value": 1 },
+        { "id": "o2", "text": "Mejora de la calidad del producto", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Reducción de costes de mantenimiento", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Reducción de costes de uso", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q15",
+      "type": "multiple",
+      "text": "¿En qué aspecto de usabilidad coinciden todos los autores?",
+      "options": [
+        { "id": "o1", "text": "Facilidad de recuerdo", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Facilidad de aprendizaje", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Satisfacción del usuario", "isCorrect": true, "value": 1 },
+        { "id": "o4", "text": "Facilidad de uso", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q16",
+      "type": "multiple",
+      "text": "¿Cuál sería la mejor forma de facilitar la accesibilidad a personas con discapacidad motora?",
+      "options": [
+        { "id": "o1", "text": "Aumentando el tamaño de la fuente de los textos", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Incluyendo textos alternativos en contenidos audiovisuales", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Adaptando el tamaño de la resolución de la pantalla", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Cambiando el canal de comunicación (sistemas de voz)", "isCorrect": true, "value": 1 }
+      ]
+    },
+    {
+      "id": "q17",
+      "type": "multiple",
+      "text": "¿Qué son y cuándo se aplican las guías detalladas de diseño?",
+      "options": [
+        { "id": "o1", "text": "Son los principios y se aplican durante las primeras etapas del proceso (especificación de requisitos)", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Son las guías de estilo y se aplican durante las primeras etapas del proceso (especificación de requisitos)", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Son las guías de estilo y se aplican durante las últimas etapas del proceso (diseño detallado)", "isCorrect": true, "value": 1 },
+        { "id": "o4", "text": "Son los principios y se aplican durante las últimas etapas del proceso (diseño detallado)", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q18",
+      "type": "multiple",
+      "text": "¿Cuáles son los principios fundamentales para la usabilidad del diseño?",
+      "options": [
+        { "id": "o1", "text": "Simplicidad y consistencia", "isCorrect": true, "value": 1 },
+        { "id": "o2", "text": "Simplicidad y estética", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Calidad y consistencia", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Calidad y simplicidad", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q19",
+      "type": "multiple",
+      "text": "Para construir un sistema interactivo perfecto este ha de ser ..... para permitir que el usuario y el sistema intercambien información de múltiples modos.",
+      "options": [
+        { "id": "o1", "text": "Flexible", "isCorrect": true, "value": 1 },
+        { "id": "o2", "text": "Tolerante a fallos", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Sintetizable", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Predictivo", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q20",
+      "type": "multiple",
+      "text": "¿Qué opción no es un eje de usabilidad?",
+      "options": [
+        { "id": "o1", "text": "Facilidad de aprendizaje", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Flexibilidad", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Consistencia", "isCorrect": true, "value": 1 },
+        { "id": "o4", "text": "Robustez", "isCorrect": false, "value": 1 }
+      ]
+    }
+  ]
+}

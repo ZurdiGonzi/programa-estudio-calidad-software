@@ -3,5 +3,10 @@
     "num_preguntas": 20,
     "puntos_acierto": 5.0,
     "puntos_fallo": 1.25
+  },
+  "Cerda infiel": {
+    "num_preguntas": 20,
+    "puntos_acierto": 5.0,
+    "puntos_fallo": 1.25
   }
 }

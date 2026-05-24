@@ -1,0 +1,228 @@
+{
+  "id": "quiz-interaccion-persona-ordenador-2023",
+  "title": "Prueba Final Interacción Persona-Ordenador - Mayo 2023",
+  "description": "Test de evaluación sobre conceptos clave de Interacción Persona-Ordenador, usabilidad, accesibilidad y diseño de sistemas interactivos.",
+  "tags": ["interacción", "usabilidad", "accesibilidad", "diseño", "IPo"],
+  "questions": [
+    {
+      "id": "q1",
+      "type": "multiple",
+      "text": "Según los estándares, ¿qué parámetros usa la ISO 9241 para definir la usabilidad?",
+      "options": [
+        { "id": "o1", "text": "Eficacia, eficiencia y consistencia", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Simplicidad, consistencia y satisfacción", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Eficacia, eficiencia y simplicidad", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Efectividad, eficiencia y satisfacción", "isCorrect": true, "value": 1 }
+      ]
+    },
+    {
+      "id": "q2",
+      "type": "multiple",
+      "text": "En el contexto de DCU según AIPO, el modelo conceptual es una actividad vinculada al ámbito de:",
+      "options": [
+        { "id": "o1", "text": "Evaluación", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Diseño", "isCorrect": true, "value": 1 },
+        { "id": "o3", "text": "Análisis de requisitos", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Prototipado", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q3",
+      "type": "multiple",
+      "text": "Según la WAI, ¿cuál de estas opciones no es un principio de accesibilidad?",
+      "options": [
+        { "id": "o1", "text": "Perceptible", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Operable", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Adaptable", "isCorrect": true, "value": 1 },
+        { "id": "o4", "text": "Comprensible", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q4",
+      "type": "multiple",
+      "text": "¿Cuál sería la mejor forma de facilitar la accesibilidad a personas con ceguera?",
+      "options": [
+        { "id": "o1", "text": "Incluyendo textos alternativos en contenidos audiovisuales", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Aumentando el tamaño de la fuente de los textos", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Cambiando el canal de comunicación (sistemas de voz)", "isCorrect": true, "value": 1 },
+        { "id": "o4", "text": "Adaptando el tamaño de la resolución de la pantalla", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q5",
+      "type": "multiple",
+      "text": "Affordance y Guessability son conceptos inherentes a:",
+      "options": [
+        { "id": "o1", "text": "Accesibilidad", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Flexibilidad", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Robustez", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Facilidad de aprendizaje", "isCorrect": true, "value": 1 }
+      ]
+    },
+    {
+      "id": "q6",
+      "type": "multiple",
+      "text": "Según la Ley de Hick-Hyman, el tiempo de reacción aumenta:",
+      "options": [
+        { "id": "o1", "text": "Siempre aumenta, independientemente de la cantidad de estímulos", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Si se mantiene la cantidad de estímulos", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Si disminuye la cantidad de estímulos", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Si aumenta la cantidad de estímulos", "isCorrect": true, "value": 1 }
+      ]
+    },
+    {
+      "id": "q7",
+      "type": "multiple",
+      "text": "¿Cuáles son los principios fundamentales para la usabilidad del diseño?",
+      "options": [
+        { "id": "o1", "text": "Calidad y simplicidad", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Simplicidad y consistencia", "isCorrect": true, "value": 1 },
+        { "id": "o3", "text": "Simplicidad y estética", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Calidad y consistencia", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q8",
+      "type": "multiple",
+      "text": "¿Cuál de las opciones hace referencia a un prototipo de alta fidelidad?",
+      "options": [
+        { "id": "o1", "text": "Tienen implementadas pocas características, pero sus funcionalidades están totalmente implementadas", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Representan aspectos más precisos del sistema", "isCorrect": true, "value": 1 },
+        { "id": "o3", "text": "Incluye características del sistema, pero no contiene funcionalidad subyacente", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Implementan aspectos generales del sistema sin entrar en detalles", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q9",
+      "type": "multiple",
+      "text": "¿Qué opción no es una característica fundamental en un sistema interactivo perfecto?",
+      "options": [
+        { "id": "o1", "text": "Funcional", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Familiar", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Estético", "isCorrect": true, "value": 1 },
+        { "id": "o4", "text": "Predictivo", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q10",
+      "type": "multiple",
+      "text": "¿En qué aspecto de usabilidad coinciden todos los autores?",
+      "options": [
+        { "id": "o1", "text": "Facilidad de aprendizaje", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Facilidad de recuerdo", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Satisfacción del usuario", "isCorrect": true, "value": 1 },
+        { "id": "o4", "text": "Facilidad de uso", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q11",
+      "type": "multiple",
+      "text": "En el contexto de prototipado, ¿qué es un escenario?",
+      "options": [
+        { "id": "o1", "text": "Una historia completa de la interacción existente", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Un objeto construido para poder evaluar una parte física del sistema", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Un conjunto de viñetas que muestran la evolución de la situación del usuario mientras está interactuando con el sistema", "isCorrect": true, "value": 1 },
+        { "id": "o4", "text": "Una forma de reflejar las historias sobre las personas y sus actividades", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q12",
+      "type": "multiple",
+      "text": "¿Qué opción no es un principio de robustez en usabilidad?",
+      "options": [
+        { "id": "o1", "text": "Familiaridad", "isCorrect": true, "value": 1 },
+        { "id": "o2", "text": "Capacidad de recuperación", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Adecuación de tareas", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Capacidad de observación", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q13",
+      "type": "multiple",
+      "text": "En el contexto de accesibilidad de la interacción, se considera discapacidad visual:",
+      "options": [
+        { "id": "o1", "text": "Solo para pérdidas de agudeza visual de más del 75%", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Solo para pérdidas de agudeza visual de más del 50%", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Solo para pérdidas de agudeza visual total (ceguera)", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Cualquier pérdida de agudeza visual", "isCorrect": true, "value": 1 }
+      ]
+    },
+    {
+      "id": "q14",
+      "type": "multiple",
+      "text": "¿Qué opción no es un eje de usabilidad?",
+      "options": [
+        { "id": "o1", "text": "Personalización", "isCorrect": true, "value": 1 },
+        { "id": "o2", "text": "Robustez", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Facilidad de aprendizaje", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Flexibilidad", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q15",
+      "type": "multiple",
+      "text": "En cuanto a las reglas de diseño, ¿cuál de las siguientes afirmaciones es correcta?",
+      "options": [
+        { "id": "o1", "text": "Los principios y los estándares son reglas de diseño abstractas", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Los principios y los estándares son reglas de diseño específicas", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Los principios son reglas de diseño abstractas y los estándares son reglas de diseño específicas", "isCorrect": true, "value": 1 },
+        { "id": "o4", "text": "Los principios son reglas de diseño específicas y los estándares son reglas de diseño abstractas", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q16",
+      "type": "multiple",
+      "text": "¿Qué opción es la que mejor define la facilidad de aprendizaje en usabilidad?",
+      "options": [
+        { "id": "o1", "text": "Multiplicidad de formas en las que el usuario y el sistema intercambian información", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Facilidad con la que los nuevos usuarios pueden aprender a interactuar de forma efectiva y a lograr el máximo rendimiento", "isCorrect": true, "value": 1 },
+        { "id": "o3", "text": "Facilidad para imponer restricciones sobre el diálogo del sistema", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Nivel con el que se da soporte al usuario para conseguir los objetivos en la aplicación", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q17",
+      "type": "multiple",
+      "text": "En relación con la participación de los usuarios en la evaluación de la IU, ¿qué afirmación es correcta?",
+      "options": [
+        { "id": "o1", "text": "Los usuarios no participan en la Interacción constructiva ni en la evaluación heurística", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Los usuarios participan en la Interacción constructiva y en la evaluación heurística", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Los usuarios participan en la Interacción constructiva, pero no en la evaluación heurística", "isCorrect": true, "value": 1 },
+        { "id": "o4", "text": "Los usuarios no participan en la Interacción constructiva, pero sí en la evaluación heurística", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q18",
+      "type": "multiple",
+      "text": "En cuanto a la importancia de aplicar principios de diseño basados en la usabilidad, ¿qué consecuencia no es correcta?",
+      "options": [
+        { "id": "o1", "text": "Reducción de costes de producción", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Reducción de calidad del producto", "isCorrect": true, "value": 1 },
+        { "id": "o3", "text": "Reducción de costes de mantenimiento", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Reducción de costes de uso", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q19",
+      "type": "multiple",
+      "text": "En relación con el pensamiento en voz alta, ¿qué afirmación es la más adecuada?",
+      "options": [
+        { "id": "o1", "text": "Permite una mejor comprensión del modelo mental del usuario", "isCorrect": true, "value": 1 },
+        { "id": "o2", "text": "Se realiza en el lugar de trabajo", "isCorrect": false, "value": 1 },
+        { "id": "o3", "text": "Se centra en el usuario inexperto", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Participan dos usuarios simultáneamente", "isCorrect": false, "value": 1 }
+      ]
+    },
+    {
+      "id": "q20",
+      "type": "multiple",
+      "text": "Cuando se dice que los sistemas interactivos deben ser diseñados para poder ser utilizados por todos, se habla de:",
+      "options": [
+        { "id": "o1", "text": "Diseño usable", "isCorrect": false, "value": 1 },
+        { "id": "o2", "text": "Diseño universal", "isCorrect": true, "value": 1 },
+        { "id": "o3", "text": "Diseño accesible", "isCorrect": false, "value": 1 },
+        { "id": "o4", "text": "Diseño inclusivo", "isCorrect": false, "value": 1 }
+      ]
+    }
+  ]
+}

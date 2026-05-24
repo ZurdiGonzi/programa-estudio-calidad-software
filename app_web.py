@@ -22,6 +22,7 @@ import random
 from pathlib import Path
 import json
 import time
+from cargador_preguntas import cargar_preguntas, listar_archivos_soportados
 
 # Configuración de la página
 st.set_page_config(page_title="Simulador de Exámenes", page_icon="📚", layout="centered")
@@ -93,21 +94,18 @@ def _safe_rerun():
 
 
 def _listar_excels_locales() -> list[str]:
-    excels = sorted([p.name for p in Path(".").glob("*.xlsx")])
+    archivos = listar_archivos_soportados()
+    todos = archivos["todos"]
     # Preferimos el banco estándar si existe.
-    if "preguntas.xlsx" in excels:
-        excels.remove("preguntas.xlsx")
-        excels.insert(0, "preguntas.xlsx")
-    return excels
+    if "preguntas.xlsx" in todos:
+        todos.remove("preguntas.xlsx")
+        todos.insert(0, "preguntas.xlsx")
+    return todos
 
 # Cacheamos la carga de datos para que no se recargue en cada interacción
 @st.cache_data
 def cargar_excel(ruta_archivo):
-    try:
-        df = pd.read_excel(ruta_archivo)
-        return df
-    except FileNotFoundError:
-        return None
+    return cargar_preguntas(ruta_archivo)
 
 # --- Gestión del estado de la aplicación (Manejo de navegación y memoria) ---
 if 'estado' not in st.session_state:
@@ -132,17 +130,46 @@ if 'settings' not in st.session_state:
 st.sidebar.markdown("### Archivo de preguntas")
 excels_disponibles = _listar_excels_locales()
 if not excels_disponibles:
-    st.sidebar.error("No se han encontrado archivos .xlsx en esta carpeta.")
+    st.sidebar.error("No se han encontrado archivos .xlsx o .json en esta carpeta.")
     st.stop()
 
-archivo_excel = st.sidebar.selectbox(
-    "Selecciona el Excel a usar",
-    options=excels_disponibles,
-    index=0,
-    key="excel_seleccionado",
+# Separar archivos raíz de la subcarpeta para mejor visualización
+archivos_raiz = [a for a in excels_disponibles if not a.startswith("examenes ipo")]
+archivos_examenes = [a.replace("examenes ipo/", "") for a in excels_disponibles if a.startswith("examenes ipo")]
+
+# Selección organizada en dos columnas del sidebar
+seleccionar_de = st.sidebar.radio(
+    "Selecciona de:",
+    ["📁 Carpeta Raíz", "📚 Exámenes IPO"],
+    key="ubicacion_archivo",
     disabled=(st.session_state.estado != "MENU"),
 )
-st.sidebar.caption("(Puedes añadir más .xlsx a la carpeta y aparecerán aquí)" )
+
+if seleccionar_de == "📁 Carpeta Raíz":
+    if archivos_raiz:
+        archivo_excel = st.sidebar.selectbox(
+            "Archivo disponible",
+            options=archivos_raiz,
+            key="excel_seleccionado_raiz",
+            disabled=(st.session_state.estado != "MENU"),
+        )
+    else:
+        st.sidebar.info("No hay archivos en la carpeta raíz")
+        st.stop()
+else:  # Exámenes IPO
+    if archivos_examenes:
+        examen_seleccionado = st.sidebar.selectbox(
+            "Elige un examen",
+            options=archivos_examenes,
+            key="excel_seleccionado_ipo",
+            disabled=(st.session_state.estado != "MENU"),
+        )
+        archivo_excel = f"examenes ipo/{examen_seleccionado}"
+    else:
+        st.sidebar.info("No hay exámenes en la carpeta 'examenes ipo'")
+        st.stop()
+
+st.sidebar.caption("(Cambia de ubicación arriba para ver otras opciones)")
 
 # --- UI de ajustes guardables ---
 st.sidebar.markdown("---")

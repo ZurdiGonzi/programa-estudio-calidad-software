@@ -25,14 +25,7 @@ instalar_si_falta('openpyxl')
 
 import pandas as pd
 import random
-
-
-def cargar_excel(ruta_archivo):
-    try:
-        return pd.read_excel(ruta_archivo)
-    except FileNotFoundError:
-        print(f"Error: No se encontró '{ruta_archivo}'.")
-        return None
+from cargador_preguntas import cargar_preguntas, listar_archivos_soportados
 
 
 def motor_preguntas(df_preguntas):
@@ -71,28 +64,52 @@ def motor_preguntas(df_preguntas):
 
 
 def menu_principal():
-    excels = sorted([p.name for p in Path('.').glob('*.xlsx')])
-    if 'preguntas.xlsx' in excels:
-        excels.remove('preguntas.xlsx')
-        excels.insert(0, 'preguntas.xlsx')
-
-    archivo_excel = 'preguntas.xlsx'
-    if excels:
-        print("\nArchivos Excel disponibles:")
-        for i, f in enumerate(excels, 1):
-            print(f" {i}. {f}")
-        eleccion = input(
-            "\nElige un número (o ENTER para usar 'preguntas.xlsx'): "
-        ).strip()
-        if eleccion:
-            if eleccion.isdigit() and 1 <= int(eleccion) <= len(excels):
-                archivo_excel = excels[int(eleccion) - 1]
-            elif eleccion in excels:
-                archivo_excel = eleccion
-            else:
-                print("⚠️ Elección no válida. Usando 'preguntas.xlsx'.")
-
-    df = cargar_excel(archivo_excel)
+    archivos = listar_archivos_soportados()
+    todos = archivos["todos"]
+    
+    if not todos:
+        print("\n❌ No se encontraron archivos Excel (.xlsx) o JSON (.json) en el directorio actual.")
+        print("   Coloca un archivo de preguntas y vuelve a intentar.")
+        input("Pulsa ENTER para salir...")
+        return
+    
+    # Preferir preguntas.xlsx si existe, sino el primer archivo disponible
+    archivo_defecto = 'preguntas.xlsx' if 'preguntas.xlsx' in todos else todos[0]
+    
+    print("\n" + "=" * 60)
+    print("      🎯 SELECCIONAR BANCO DE PREGUNTAS 🎯")
+    print("=" * 60)
+    
+    # Separar y mostrar archivos por ubicación
+    print("\n📊 Archivos en carpeta raíz:")
+    for i, archivo in enumerate(todos, 1):
+        if not archivo.startswith("examenes ipo"):
+            tipo = "📄 JSON" if archivo.endswith('.json') else "📊 Excel"
+            marcador = " ← DEFECTO" if archivo == archivo_defecto else ""
+            print(f"  {i}. {tipo} | {archivo}{marcador}")
+    
+    # Mostrar exámenes de la subcarpeta si existen
+    examenes_subcarpeta = [a for a in todos if a.startswith("examenes ipo")]
+    if examenes_subcarpeta:
+        print("\n📚 Exámenes IPO (carpeta 'examenes ipo'):")
+        for i, archivo in enumerate(todos, 1):
+            if archivo.startswith("examenes ipo"):
+                # Mostrar el nombre más corto
+                nombre_corto = archivo.replace("examenes ipo/", "")
+                print(f"  {i}. 📝 {nombre_corto}")
+    
+    eleccion = input(f"\nElige un número (o ENTER para '{archivo_defecto}'): ").strip()
+    
+    archivo_elegido = archivo_defecto
+    if eleccion:
+        if eleccion.isdigit() and 1 <= int(eleccion) <= len(todos):
+            archivo_elegido = todos[int(eleccion) - 1]
+        elif eleccion in todos:
+            archivo_elegido = eleccion
+        else:
+            print(f"⚠️ Elección no válida. Usando '{archivo_defecto}'.")
+    
+    df = cargar_preguntas(archivo_elegido)
 
     if df is None:
         input("Pulsa ENTER para salir...")
